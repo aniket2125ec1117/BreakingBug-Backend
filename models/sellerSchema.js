@@ -16,7 +16,7 @@ const sellerSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: "seller"
+        default: "Seller"
     },
     shopName: {
         type: String,

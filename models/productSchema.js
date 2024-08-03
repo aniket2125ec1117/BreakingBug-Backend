@@ -45,11 +45,11 @@ const productSchema =  mongoose.Schema(
                 },
                 reviewer: {
                     type: mongoose.Schema.Types.ObjectId,
-                    ref: "CUSTOMERS",
+                    ref: 'customer',
                 },
                 date: {
                     type: Date,
-                    default: Text,
+                    default: Date.now(),
                 },
             },
         ],
@@ -59,4 +59,4 @@ const productSchema =  mongoose.Schema(
         },
     }, { timestamps: false});
 
-module.exports = mongoose.mongoose("product", productSchema)
+module.exports = mongoose.model("product", productSchema)

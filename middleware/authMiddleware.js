@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req, res, next) => {
-    const token = req.header('Authorization');
+    const authHeader = req.header('Authorization');
+    const token = authHeader.split(' ')[1];
 
     if (!token) {
         return res.status(401).json({ message: 'Authorization token not found' });
     }
 
     try {
-        const decoded = jwt.env(token, process.env.SECRET_KEY);
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
         req.user = decoded;
         next();
     } catch (err) {

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const Seller = require('./sellerSchema')
 
 const customerSchema = mongoose.Schema({
     name: {
@@ -54,7 +55,7 @@ const customerSchema = mongoose.Schema({
         },
         seller: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'SELLER'
+            ref: 'seller'
         },
     }],
     shippingData: {
