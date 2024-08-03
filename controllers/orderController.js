@@ -10,6 +10,7 @@ const newOrder = async (req, res) => {
             paymentInfo,
             productsQuantity,
             totalPrice,
+            orderStatus
         } = req.body;
 
         const order = await Order.create({
@@ -20,12 +21,14 @@ const newOrder = async (req, res) => {
             paidAt: Date.now(),
             productsQuantity,
             totalPrice,
+            orderStatus
         });
 
         return res.send(order);
 
     } catch (err) {
         res.status(500).json(err);
+        console.log(err.message)
     }
 }
 
@@ -38,7 +41,7 @@ const getOrderedProductsByCustomer = async (req, res) => {
         
         const orderedProducts = orders.reduce((accumulator, order) => {
             
-            return accumulator.filter(product => {
+            return accumulator.filter(order => {
                 accumulator.push(...order.orderedProducts);
                 return true; 
             });
@@ -52,6 +55,7 @@ const getOrderedProductsByCustomer = async (req, res) => {
         }
     } catch (err) {
         res.status(500).json(err);
+        console.log(err.message)
     }
 };
 
@@ -60,7 +64,7 @@ const getOrderedProductsBySeller = async (req, res) => {
         const sellerId = req.params.id;
 
         const ordersWithSellerId = await Order.find({
-            'orderedProducts.sellerId': sellerId
+            _id: sellerId
         });
 
         if (ordersWithSellerId.length > 0) {

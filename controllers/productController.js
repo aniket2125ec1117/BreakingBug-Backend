@@ -57,6 +57,7 @@ const getProductDetail = async (req, res) => {
         }
     } catch (err) {
         res.status(500).json(err);
+        console.log(err.message)
     }
 }
 
@@ -78,8 +79,11 @@ const addReview = async (req, res) => {
         const productId = req.params.id;
 
         const product = await Product.findById(productId);
+        if (!product) {
+            return res.send({message: "Product not found"})
+        }
 
-        const existingReview = product.reviews.find(review => review.reviewer.toString() === reviewer);
+        const existingReview = product.reviews.find(review => review.reviewer.toString() === reviewer.toString());
 
         if (existingReview) {
             return res.send({ message: "You have already submitted a review for this product." });
@@ -97,6 +101,8 @@ const addReview = async (req, res) => {
         res.send(updatedProduct);
     } catch (error) {
         res.status(500).json(error);
+
+        console.log(error.message)
     }
 };
 
