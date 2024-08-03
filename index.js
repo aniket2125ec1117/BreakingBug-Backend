@@ -7,13 +7,13 @@ dotenv.config();
 require('./database.js'); 
 
 const app = express();
-const Routes = require("./routes/route.js");
+const {router} = require("./routes/route.js");
 
 const PORT = process.env.PORT || 5000;
 app.use(express.json({ limit: '10mb' }));
 app.use(cors());
 
-app.use('/', Routes);
+app.use('/', router);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -33,7 +33,7 @@ async function createDummyData() {
   // Dummy Seller
   const seller = new Seller({
     name: "John's Shop",
-    email: "joh1n@1mp.0le.com",
+    email: `jo${Math.random(3)}h1n@1mp.0le.com`,
     password: "password123",
     shopName: "JohnsShop"
   });
@@ -42,7 +42,7 @@ async function createDummyData() {
   // Dummy Customer
   const customer = new Customer({
     name: "Jane Doe",
-    email: "jane@exa1m1p.l145e.com",
+    email: `ane@exa1m1p.l14${Math.random(3)}5e.com`,
     password: "password123",
     shippingData: {
       address: "123 Main St",
