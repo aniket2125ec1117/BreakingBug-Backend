@@ -69,7 +69,7 @@ const customerSchema = mongoose.Schema({
             type: String,
         },
         country: {
-            type: Number,
+            type: String,
         },
         pinCode: {
             type: Number,

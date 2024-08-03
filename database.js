@@ -26,14 +26,14 @@ mongoose.connect(mongoURL)
     console.log('MongoDB connected...');
     createDummyData();  // Call function to create dummy data
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log(err.message));
 
 // Function to create dummy data
 async function createDummyData() {
   // Dummy Seller
   const seller = new Seller({
     name: "John's Shop",
-    email: "john@example.com",
+    email: "joh1n@1mp.0le.com",
     password: "password123",
     shopName: "JohnsShop"
   });
@@ -42,7 +42,7 @@ async function createDummyData() {
   // Dummy Customer
   const customer = new Customer({
     name: "Jane Doe",
-    email: "jane@example.com",
+    email: "jane@exa1m1p.l145e.com",
     password: "password123",
     shippingData: {
       address: "123 Main St",
@@ -79,7 +79,7 @@ async function createDummyData() {
     orderedProducts: [{
       productName: product.productName,
       price: product.price,
-      subcategory: product.subcategory,
+      // subcategory: product.subcategory, // no reference given
       productImage: product.productImage,
       category: product.category,
       description: product.description,
